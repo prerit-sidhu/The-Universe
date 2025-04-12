@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Contact Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+        label {
+            margin-top: 10px;
+        }
+        input, textarea {
+            padding: 8px;
+            margin-top: 5px;
+        }
+        button {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        #formStatus {
+            margin-top: 20px;
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Test Contact Form</h1>
+    <form id="contactForm">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required>
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required>
+
+        <label for="message">Message:</label>
+        <textarea id="message" name="message" rows="4" required></textarea>
+
+        <button type="submit">Send Message</button>
+        <div id="formStatus"></div>
+    </form>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const contactForm = document.getElementById('contactForm');
+        const formStatus = document.getElementById('formStatus');
+        
+        contactForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            formStatus.textContent = "Sending message...";
+            formStatus.style.color = "#333";
+            
+            const formData = new FormData(contactForm);
+            
+            fetch('/submit-form', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    formStatus.textContent = data.message;
+                    formStatus.style.color = "green";
+                    contactForm.reset();
+                } else {
+                    formStatus.textContent = data.message + (data.error ? ": " + data.error : "");
+                    formStatus.style.color = "red";
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                formStatus.textContent = "There was an error sending your message. Please try again later.";
+                formStatus.style.color = "red";
+            });
+        });
+    });
+    </script>
+</body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test JSON Access</title>
+</head>
+<body>
+    <h1>Testing JSON Access</h1>
+    <div id="result">Loading...</div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const resultElement = document.getElementById('result');
+            
+            // Try to fetch the JSON file
+            fetch('data/mercury_distance.json')
+                .then(response => {
+                    resultElement.innerHTML += `<p>Response status: ${response.status}</p>`;
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    resultElement.innerHTML += `<p>Data received successfully!</p>`;
+                    resultElement.innerHTML += `<pre>${JSON.stringify(data, null, 2)}</pre>`;
+                })
+                .catch(error => {
+                    resultElement.innerHTML += `<p>Error: ${error.message}</p>`;
+                });
+        });
+    </script>
+</body>
+</html>

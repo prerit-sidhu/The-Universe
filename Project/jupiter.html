@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jupiter - Explore Planets</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Space+Grotesk:wght@500&display=swap" rel="stylesheet">
+    <!-- External CSS -->
+    <link rel="stylesheet" href="planets.css">
+    <!-- Include THREE.js -->
+    <script src="https://cdn.jsdelivr.net/npm/three@0.140.0/build/three.min.js"></script>
+    <!-- Remove the type="module" attribute or use a different loader approach -->
+    <script src="https://cdn.jsdelivr.net/npm/three@0.140.0/examples/js/loaders/GLTFLoader.js"></script>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="navbar-container">
+            <h1 class="navbar-logo">Explore Planets</h1>
+            <ul class="navbar-links">
+                <li><a href="index.html">Home</a></li>
+                
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Header Section -->
+    <header class="planet-header">
+        <h1>Jupiter</h1>
+        <p>The largest planet in the solar system, a gas giant with a massive storm called the Great Red Spot.</p>
+    </header>
+
+    <!-- 3D Model and Data Section -->
+    <main class="main-content">
+        
+        <section class="data-section">
+            <h2>Planetary Data</h2>
+            <div class="data-grid">
+                <div>
+                    <h3>Escape Velocity</h3>
+                    <p>59.5 km/s</p>
+                </div>
+                <div>
+                    <h3>Planet Diameter</h3>
+                    <p>139,820 km
+                    </p>
+                </div>
+                <div>
+                    <h3>Planet Mass</h3>
+                    <p>1,898 x 10<sup>24</sup> kg</p>
+                </div>
+                <div>
+                    <h3>Surface Gravity</h3>
+                    <p>24.79 m/s²</p>
+                </div>
+                <div>
+                    <h3>Solar Orbital Period</h3>
+                    <p>11.86 Earth years</p>
+                </div>
+                <div>
+                    <h3>Rotation Period</h3>
+                    <p>9.93 Hours</p>
+                </div>
+                <div>
+                    <h3 id="distance-from-earth">Current distance from Earth</h3>
+                    <p id="real-time-distance">
+                        <span id="distance-au">--</span> AU
+                        (<span id="distance-km">--</span> km)
+                    </p>
+                    <p class="update-time">Last updated: <span id="last-updated">--</span></p>
+                    <button id="refresh-distance" class="refresh-btn">Refresh</button>
+                </div>
+                <div>
+                    <h3>Orbital Velocity</h3>
+                    <p>13.07 km/s</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer Section -->
+    <footer>
+        <p>© 2024 Explore Planets</p>
+    </footer>
+
+    <!-- Mercury JS Script - Load this after all other scripts -->
+    <script src="jupiter.js"></script>
+</body>
+</html>
